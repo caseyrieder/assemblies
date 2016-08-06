@@ -32,8 +32,8 @@ class Assemblies extends Component {
   }
 
   render() {
+    /* add ref...el for use in logout method */
     return (
-      {/* add ref...el for use in logout method */}
       <Navigator
         style={globals.flex}
         ref={(el) => this.nav = el }
@@ -48,7 +48,7 @@ class Assemblies extends Component {
             case 'Dashboard':
               return (
                 <Dashboard
-                  updateUser={this.updateUser}
+                  navigator={navigator}
                   logout={this.logout}
                 />
             );
