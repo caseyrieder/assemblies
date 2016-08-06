@@ -8,13 +8,15 @@ import ProfileView from './profile/ProfileView'
 
 class Dashboard extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       selectedTab: 'Activity'
-    }
+    };
   }
 
   render() {
+    let { user } = this.props; // user data comes from logged in user
+    // add cuser as currentUser prop to all 3 views
     return (
       <TabBarIOS>
         <TabBarItemIOS
@@ -23,7 +25,7 @@ class Dashboard extends Component {
           iconName='ios-pulse'
           onPress={() => this.setState({ selectedTab: 'Activity'})}
         >
-          <ActivityView />
+          <ActivityView currentUser={user}/>
         </TabBarItemIOS>
         <TabBarItemIOS
           title='Messages'
@@ -31,7 +33,7 @@ class Dashboard extends Component {
           iconName='ios-chatboxes'
           onPress={() => this.setState({ selectedTab: 'Messages'})}
         >
-          <MessagesView />
+          <MessagesView currentUser={user}/>
         </TabBarItemIOS>
         <TabBarItemIOS
           title='Profile'
@@ -39,7 +41,7 @@ class Dashboard extends Component {
           iconName='ios-person'
           onPress={() => this.setState({ selectedTab: 'Profile'})}
         >
-          <ProfileView />
+          <ProfileView currentUser={user}/>
         </TabBarItemIOS>
       </TabBarIOS>
     )

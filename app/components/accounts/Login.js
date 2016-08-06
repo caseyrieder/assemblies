@@ -3,7 +3,9 @@ import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-nativ
 import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/Ionicons'
 import BackButton from '../shared/BackButton'
-import { extend } from 'underscore' // for later...
+import { API, DEV } from '../../config' // dev data & server info
+import { Headers } from '../../fixtures' // for api call header
+import { extend } from 'underscore' // to add attrib/prop to an object
 import Colors from '../../styles/colors'
 import { globals, formStyles } from '../../styles' // add formStyles
 
@@ -24,12 +26,57 @@ class Login extends Component {
       errorMsg: '',
     }
   }
-  // define 4 onPress handlers
+  // define the fetch API call to login by POSTing login form to endpoint (.../users/login)---gives us response with status (response.status) & id (response.id) property... handling error (401), fetch/get user info with session id cookie (sid) (.../users/me)
   loginUser() {
-    /* TODO: login user with username & password */
-    console.log('Email: ', this.state.email);
-    console.log('Password: ', this.state.password);
+    if (DEV) {
+      console.log('Logging in...');
+      console.log('Email: ', this.state.email);
+      console.log('Password: ', this.state.password);
+    }
+    fetch(`${API}/users/login`, {
+      method: 'POST',
+      headers: Headers,
+      body: JSON.stringify({
+        username: this.state.email,
+        password: this.state.password
+      })
+    })
+    .then(response => response.json())
+    .then(data => this.loginStatus(data))
+    .catch(err => this.connectionError())
+    .done();
   }
+  /*DEFINE HELPER FXNS FOR loginUser METHOD...*/
+  // check the loggedin status of the call
+  loginStatus(response) {
+    if (response.status === 401) {
+      this.setState({ errorMsg: 'Incorrect login info' });
+    } else {
+      this.fetchUserInfo(response.id)
+    }
+  }
+  // fetch user data if login info is correct
+  fetchUserInfo(sid) {
+    fetch(`${API}/users/me`, {
+      headers: extend(Headers, {'Set-Cookie': `sid=${sid}`})
+    })
+    .then(response => response.json())
+    .then(user => this.updateUserInfo(user))
+    .catch(err => this.connectionError())
+    .done();
+  }
+  // log the connected user & redirect to Dashboard
+  updateUserInfo(user) {
+    if (DEV) { console.log('Logged in user', user); }
+    this.props.updateUser(user);
+    this.props.navigator.push({ name: 'Dashboard' })
+  }
+  // register & display connection error
+  connectionError(){
+    this.setState({ errorMsg: 'Connection error.'})
+  }
+
+  // define 3 onPress handlers
   goBack() {
     this.props.navigator.pop();
   }

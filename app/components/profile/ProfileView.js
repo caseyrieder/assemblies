@@ -2,13 +2,14 @@ import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
-import { currentUser } from '../../fixtures'
+// import { currentUser } from '../../fixtures' /* undo this now */
 import Colors from '../../styles/colors'
 import { globals, profileStyles } from '../../styles'
 const styles = profileStyles
 
 class ProfileView extends Component {
   render() {
+    let { currentUser } = this.props; // add me, now that i've logged in
     let titleConfig = { title: 'Profile', tintColor: 'white' }
     return (
       <View style={[globals.flexContainer, globals.inactive]}>

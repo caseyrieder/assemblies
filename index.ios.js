@@ -12,6 +12,19 @@ import Login from './app/components/accounts/Login'
 import { globals } from './app/styles'
 
 class Assemblies extends Component {
+  // pass updateuser method into props & initialize no-user state
+  constructor() {
+    super();
+    this.updateUser = this.updateUser.bind(this);
+    this.state = {
+      user: null
+    };
+  }
+  // updateUser method will set user state
+  updateUser(user) {
+    this.setState({ user: user});
+  }
+
   render() {
     return (
       <Navigator
@@ -23,17 +36,35 @@ class Assemblies extends Component {
               return (
                 <Landing navigator={navigator} />
             );
+            {/* add user state & updateUser method to Dashboard */}
             case 'Dashboard':
               return (
-                <Dashboard navigator={navigator} />
+                <Dashboard
+                  updateUser={this.updateUser}
+                  navigator={navigator}
+                  user={this.state.user}
+                />
             );
             case 'Register':
               return (
                 <Register navigator={navigator} />
             );
+            {/* add RegisterConfirmation route */}
+            case 'RegisterConfirmation':
+              return (
+                <RegisterConfirmation
+                  {...route}
+                  updateUser={this.updateUser}
+                  navigator={navigator}
+                />
+            );
+            {/* add updateUser method state to Dashboard */}
             case 'Login':
               return (
-                <Login navigator={navigator} />
+                <Login
+                  navigator={navigator}
+                  updateUser={this.updateUser}
+                />
             );
           }
         }}
