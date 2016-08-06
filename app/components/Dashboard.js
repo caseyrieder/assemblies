@@ -1,22 +1,36 @@
 import React, { Component } from 'react'
 import { TabBarIOS } from 'react-native'
 import { TabBarItemIOS } from 'react-native-vector-icons/Ionicons'
-
 import ActivityView from './activity/ActivityView'
 import MessagesView from './messages/MessagesView'
 import ProfileView from './profile/ProfileView'
+// import Headers & API to enable logout
+import { Headers } from '../fixtures'
+import { API } from '../config'
 
 class Dashboard extends Component {
+  // add logout
   constructor() {
     super();
+    this.logout = this.logout.bind(this);
     this.state = {
       selectedTab: 'Activity'
     };
   }
+  // define logout call to API
+  logout() {
+    fetch(`${API}/users/logout`, {
+      method: 'POST',
+      headers: Headers
+    })
+    .then(response => response.json())
+    .then(data => this.props.logout())
+    .catch(err => {})
+    .done();
+  }
 
   render() {
-    let { user } = this.props; // user data comes from logged in user
-    // add cuser as currentUser prop to all 3 views
+    let { user } = this.props; // assign currentUser
     return (
       <TabBarIOS>
         <TabBarItemIOS
@@ -41,7 +55,8 @@ class Dashboard extends Component {
           iconName='ios-person'
           onPress={() => this.setState({ selectedTab: 'Profile'})}
         >
-          <ProfileView currentUser={user}/>
+          {/* add logout as prop */}
+          <ProfileView currentUser={user} logout={this.logout}/>
         </TabBarItemIOS>
       </TabBarIOS>
     )

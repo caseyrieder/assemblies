@@ -2,14 +2,13 @@ import React, { Component } from 'react'
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
-// import { currentUser } from '../../fixtures' /* undo this now */
 import Colors from '../../styles/colors'
 import { globals, profileStyles } from '../../styles'
 const styles = profileStyles
 
 class ProfileView extends Component {
   render() {
-    let { currentUser } = this.props; // add me, now that i've logged in
+    let { currentUser } = this.props; // assign currentUser
     let titleConfig = { title: 'Profile', tintColor: 'white' }
     return (
       <View style={[globals.flexContainer, globals.inactive]}>
@@ -46,7 +45,11 @@ class ProfileView extends Component {
             </Text>
             <Icon name='ios-arrow-forward' size={30} color='#ccc' />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.logoutButton}>
+          {/* wire up the logout button */}
+          <TouchableOpacity
+            style={styles.logoutButton}
+            onPress={this.props.logout}
+          >
             <Text style={styles.logoutText}>
               Logout
             </Text>

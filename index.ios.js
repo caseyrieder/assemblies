@@ -12,23 +12,31 @@ import Login from './app/components/accounts/Login'
 import { globals } from './app/styles'
 
 class Assemblies extends Component {
-  // pass updateuser method into props & initialize no-user state
+  // add logout method
   constructor() {
     super();
+    this.logout = this.logout.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.state = {
       user: null
-    };
+    }
   }
-  // updateUser method will set user state
+  // logout method--redirect to Landing & remove user
+  logout() {
+    this.nav.push({ name: 'Landing' });
+    this.updateUser(null);
+  }
+
   updateUser(user) {
     this.setState({ user: user});
   }
 
   render() {
     return (
+      {/* add ref...el for use in logout method */}
       <Navigator
         style={globals.flex}
+        ref={(el) => this.nav = el }
         initialRoute={{ name: 'Landing' }}
         renderScene={(route, navigator) => {
           switch(route.name) {
@@ -36,13 +44,12 @@ class Assemblies extends Component {
               return (
                 <Landing navigator={navigator} />
             );
-            {/* add user state & updateUser method to Dashboard */}
+            {/* remove updateUser & user, replace with logout */}
             case 'Dashboard':
               return (
                 <Dashboard
                   updateUser={this.updateUser}
-                  navigator={navigator}
-                  user={this.state.user}
+                  logout={this.logout}
                 />
             );
             case 'Register':
