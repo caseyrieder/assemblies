@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
-// add scrollview, image, touchableopacity
 import { View, Text, ScrollView, Image, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
-// import fixtures
 import { currentUser } from '../../fixtures'
 import Colors from '../../styles/colors'
-// import profilestyles, create const for it
 import { globals, profileStyles } from '../../styles'
 const styles = profileStyles
 
@@ -19,10 +16,8 @@ class ProfileView extends Component {
           title={titleConfig}
           tintColor={Colors.brandPrimary}
         />
-        {/* add scrollview */}
         <ScrollView style={globals.flex}>
           <View style={styles.flexRow}>
-            {/* add clickable avatar, name/city stuff */}
             <TouchableOpacity style={[globals.flexCenter, globals.pv1]}>
               <Image
                 source={{uri: currentUser.avatar}}
@@ -30,7 +25,6 @@ class ProfileView extends Component {
               />
             </TouchableOpacity>
             <View style={styles.flexContainer}>
-              {/* add name/city stuff */}
               <Text style={globals.h4}>
                 {currentUser.firstName} {currentUser.lastName}
               </Text>
@@ -39,21 +33,18 @@ class ProfileView extends Component {
               </Text>
             </View>
           </View>
-          {/* add clickable technologies list */}
           <TouchableOpacity style={styles.formButton}>
             <Text style={globals.h4}>
               My Technologies
             </Text>
             <Icon name='ios-arrow-forward' size={30} color='#ccc' />
           </TouchableOpacity>
-          {/* add clickable settings */}
           <TouchableOpacity style={styles.formButton}>
             <Text style={globals.h4}>
               Settings
             </Text>
             <Icon name='ios-arrow-forward' size={30} color='#ccc' />
           </TouchableOpacity>
-          {/* add clickable logout */}
           <TouchableOpacity style={styles.logoutButton}>
             <Text style={styles.logoutText}>
               Logout
