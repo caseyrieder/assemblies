@@ -10,13 +10,19 @@ const Logo = 'https://s3-us-west-2.amazonaws.com/assembliesapp/logo.png';
 const styles = landingStyles
 
 class Landing extends Component {
+  /* change to new event handlers */
   constructor() {
     super()
-    this.visitDashboard = this.visitDashboard.bind(this)
+    this.visitLogin = this.visitLogin.bind(this)
+    this.visitRegister = this.visitRegister.bind(this)
   }
 
-  visitDashboard() {
-    this.props.navigator.push({ name: 'Dashboard' })
+  /* set up 2 event handlers */
+  visitLogin() {
+    this.props.navigator.push({ name: 'Login' })
+  }
+  visitRegister() {
+    this.props.navigator.push({ name: 'Register' })
   }
 
   render() {
@@ -40,13 +46,23 @@ class Landing extends Component {
             Where Developers Connect
           </Text>
         </View>
+        {/* add 2 buttons, rows that span the width at screen bottom */}
+        <TouchableOpacity
+          style={[globals.button, globals.inactive, styles.loginButton]}
+          onPress={this.visitLogin}
+        >
+          <Icon name='lock' size={36} color={Colors.brandPrimary} />
+          <Text style={[globals.buttonText, globals.primaryText]}>
+            Login
+          </Text>
+        </TouchableOpacity>
         <TouchableOpacity
           style={globals.button}
-          onPress={this.visitDashboard}
+          onPress={this.visitRegister}
         >
           <Icon name='person' size={36} color='white' />
           <Text style={globals.buttonText}>
-            Go to Dashboard
+            Create an account
           </Text>
         </TouchableOpacity>
       </View>
