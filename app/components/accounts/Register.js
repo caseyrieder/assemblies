@@ -34,11 +34,28 @@ class Register extends Component {
   }
   // new methods
   selectLocation(data, details) {
-    /* TODO: handle location selection */
+    if (!details) { return }
+    let location = {
+      ...details.geometry.location,
+      city: find(details.address_components, (c) => (
+        isEqual(c.types[0], 'locality')
+      )),
+      state: find(details.address_components, (c) => (
+        isEqual(c.types[0], 'administrative_area_level_1')
+      )),
+      county: find(details.address_components, (c) => (
+        isEqual(c.types[0], 'administrative_area_level_2')
+      )),
+      formattedAddress: details.formatted_address
+    };
+    this.setState({ location });
   }
 
   handleSubmit() {
-    /* TODO: handle submit & direct to pt. 1 */
+    this.props.navigator.push({
+      name: 'RegisterConfirm',
+      ...this.state
+    })
   }
 
   render() {
@@ -62,7 +79,7 @@ class Register extends Component {
               currentLocationLabel='Current location'
               fetchDetails={true}
               filterReverseGeocodingByTypes={['street_address']}
-              getDefaultValue={() = > {return '';}}
+              getDefaultValue={() => {return '';}}
               GooglePlacesSearchQuery={{rankby: 'distance',}}
               GoogleReverseGeocodingQuery={{}}
               minLength={2}
@@ -87,7 +104,7 @@ class Register extends Component {
               maxLength={144}
               onChangeText={(email) => this.setState({ email })}
               onSubmitEditing={() => this.password.focus()}
-              placeholder='Your email address'
+              placeholder='Your email'
               placholderTextColor={Colors.copyMedium}
               returnKeyType='next'
               style={styles.input}

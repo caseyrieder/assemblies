@@ -56,7 +56,10 @@ class Dashboard extends Component {
           onPress={() => this.setState({ selectedTab: 'Profile'})}
         >
           {/* add logout as prop */}
-          <ProfileView currentUser={user} logout={this.logout}/>
+          <ProfileView
+            currentUser={user}
+            logout={this.logout}
+          />
         </TabBarItemIOS>
       </TabBarIOS>
     )

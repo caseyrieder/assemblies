@@ -8,6 +8,7 @@ import { AppRegistry, Navigator } from 'react-native'
 import Landing from './app/components/Landing'
 import Dashboard from './app/components/Dashboard'
 import Register from './app/components/accounts/Register'
+import RegisterConfirm from './app/components/accounts/RegisterConfirm'
 import Login from './app/components/accounts/Login'
 import { globals } from './app/styles'
 
@@ -44,11 +45,13 @@ class Assemblies extends Component {
               return (
                 <Landing navigator={navigator} />
             );
-            {/* remove updateUser & user, replace with logout */}
+            {/* add logout */}
             case 'Dashboard':
               return (
                 <Dashboard
+                  updateUser={this.updateUser}
                   navigator={navigator}
+                  user={this.state.user}
                   logout={this.logout}
                 />
             );
@@ -57,9 +60,9 @@ class Assemblies extends Component {
                 <Register navigator={navigator} />
             );
             {/* add RegisterConfirmation route */}
-            case 'RegisterConfirmation':
+            case 'RegisterConfirm':
               return (
-                <RegisterConfirmation
+                <RegisterConfirm
                   {...route}
                   updateUser={this.updateUser}
                   navigator={navigator}
