@@ -32,16 +32,16 @@ class MessagesView extends Component {
       $limit: 10, $sort: { lastMessageDate: -1 }
     };
     // this fetch will return conversations...line after response
-    fetch(`{API}/conversations?${JSON.stringify(query)}`)
+    fetch(`${API}/conversations?${JSON.stringify(query)}`)
     .then(response => repsonse.json())
     .then(conversations => this._loadUsers(conversations))
     .catch(err => this.ready(err))
     .done();
   }
-  // grab userIDs from conversations & set new state
-  _loadUsers(conversations) {
-    let userIDs = uniq(flatten(conversations.map(c => [c.user1Id, c.user2Id])));
-    let query = { id: { $in: userIDs }};
+  // grab userIds from conversations & set new state
+  _loadUsers(conversations){
+    let userIds = uniq(flatten(conversations.map(c => [c.user1Id, c.user2Id])));
+    let query = { id: { $in: userIds }};
     // this fetch will return users...line after response
     fetch(`${API}/users?${JSON.stringify(query)}`)
     .then(response => response.json())

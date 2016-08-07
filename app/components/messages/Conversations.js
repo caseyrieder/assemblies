@@ -1,26 +1,29 @@
 import React, { Component } from 'react'
 import { View, Text, Image, TouchableOpacity, ListView } from 'react-native'
+import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
-import moment from 'moment'
-import { find, isEqual } from 'underscore'
 import { rowHasChanged } from '../../utils'
+import { find, isEqual } from 'underscore'
 import Colors from '../../styles/colors'
 import { globals, messagesStyles } from '../../styles'
-const styles = messagesStyles;
+
+const styles = messagesStyles
 
 class Conversations extends Component {
+  // method bindings
   constructor() {
     super();
     this._renderRow = this._renderRow.bind(this);
     this.dataSource = this.dataSource.bind(this);
   }
-
-  _renderRow(conversation) {
+  // renderRow based on convo Ids
+  _renderRow(conversation){
     let { currentUser } = this.props;
-    let userIDs = [conversation.user1Id, conversation.user2Id];
+    let userIDs = [ conversation.user1Id, conversations.user2Id ];
     let otherUserID = find(userIDs, (id) => !isEqual(id, currentUser.id));
-    let user = find(FakeUsers, ({ id }) => isEqual(id, otherUserID));
+    let user = find(this.props.users, ({ id }) => isEqual(id, otherUserID));
+    // display as earlier (otherAvatar, otherName, time since last message, first 40 chars of message)
     return (
       <TouchableOpacity style={globals.flexContainer}>
         <View style={globals.flexRow}>
@@ -37,7 +40,7 @@ class Conversations extends Component {
                 {moment(conversation.lastMessageDate).fromNow()}
               </Text>
             </View>
-            <Text style={styles.h4}>
+            <Text style={[styles.h4, globals.mh1]}>
               {conversation.lastMessageText.substring(0, 40)}...
             </Text>
           </View>
@@ -49,18 +52,20 @@ class Conversations extends Component {
             />
           </View>
         </View>
-        <View style={styles.divider} />
+        <View style={styles.divider}/>
       </TouchableOpacity>
     )
   }
-
+  // define listview dataSource
   dataSource() {
     return (
       new ListView.DataSource({ rowHasChanged: rowHasChanged })
       .cloneWithRows(this.props.conversations)
     )
   }
+  // render conversations list
   render() {
+    let titleConfig = { title: 'Messages', tintColor: 'white' };
     return (
       <View style={globals.flexContainer}>
         <NavigationBar
@@ -70,11 +75,11 @@ class Conversations extends Component {
         <ListView
           enableEmptySections={true}
           dataSource={this.dataSource()}
-          contentInsert={{ bottom: 49 }}
+          contentInset={{ bottom: 49 }}
           renderRow={this._renderRow}
         />
       </View>
-    )
+    );
   }
 };
 

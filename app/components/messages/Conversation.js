@@ -7,19 +7,23 @@ import BackButton from '../shared/BackButton'
 import { globals } from '../../styles'
 
 class Conversation extends Component {
+  // initialize binding
   constructor() {
     super();
     this.goBack = this.goBack.bind(this);
   }
+  // enable back button
   goBack() {
     this.props.navigator.pop();
   }
+  // set user/currentUser as props, config title
   render() {
     let { user, currentUser } = this.props;
     let titleConfig = {
       title: `${user.firstName} ${user.lastName}`,
       tintColor: 'white'
     };
+    // return navbar w/Back & text 'Conversation'
     return (
       <View style={globals.flexContainer}>
         <NavigationBar
