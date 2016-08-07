@@ -1,11 +1,5 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  ListView
-} from 'react-native'
+import { View, Text, Image, TouchableOpacity, ListView } from 'react-native'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'

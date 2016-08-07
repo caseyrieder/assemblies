@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, ScrollView, TextInput, TouchableOpacity } from 'react-native' // add Scrollview, textinput & TouchableOpacity for form
+import { View, Text, ScrollView, TextInput, TouchableOpacity, AsyncStorage } from 'react-native' // add AsyncStorage for persistent user Login
 import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/Ionicons'
 import BackButton from '../shared/BackButton'
@@ -57,6 +57,8 @@ class Login extends Component {
   }
   // fetch user data if login info is correct
   fetchUserInfo(sid) {
+    // AsyncStorage for user login persistence
+    AsyncStorage.setItem('sid', sid);
     fetch(`${API}/users/me`, {
       headers: extend(Headers, {'Set-Cookie': `sid=${sid}`})
     })

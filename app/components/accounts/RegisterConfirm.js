@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ScrollView, Dimensions, AsyncStorage } from 'react-native' // add AsyncStorage for persistence
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import ImagePicker from 'react-native-image-picker' // add imagepicker
 import NavigationBar from 'react-native-navbar'
@@ -77,6 +77,8 @@ class RegisterConfirm extends Component {
   }
   // handle user info parsing once the user logs in
   getUserInfo(sid) {
+    // AsyncStorage for user login persistence
+    AsyncStorage.setItem('sid', sid);
     fetch(`${API}/users/me`, {
       headers: extend(Headers, { 'Set-Cookie': `sid=${sid}`})
     })
