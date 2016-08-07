@@ -5,7 +5,7 @@
 			"name": "firstName",
 			"type": "string",
 			"typeLabel": "string",
-			"required": false,
+			"required": true,
 			"id": "firstName",
 			"order": 0
 		},
@@ -13,7 +13,7 @@
 			"name": "lastName",
 			"type": "string",
 			"typeLabel": "string",
-			"required": false,
+			"required": true,
 			"id": "lastName",
 			"order": 1
 		},
@@ -21,7 +21,7 @@
 			"name": "location",
 			"type": "object",
 			"typeLabel": "object",
-			"required": false,
+			"required": true,
 			"id": "location",
 			"order": 2
 		},
@@ -29,7 +29,7 @@
 			"name": "technologies",
 			"type": "array",
 			"typeLabel": "array",
-			"required": false,
+			"required": true,
 			"id": "technologies",
 			"order": 3
 		},
@@ -37,7 +37,7 @@
 			"name": "avatar",
 			"type": "string",
 			"typeLabel": "string",
-			"required": false,
+			"required": true,
 			"id": "avatar",
 			"order": 4
 		}

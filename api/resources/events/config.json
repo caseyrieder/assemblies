@@ -1,0 +1,61 @@
+{
+	"type": "Collection",
+	"properties": {
+		"groupId": {
+			"name": "groupId",
+			"type": "string",
+			"typeLabel": "string",
+			"required": true,
+			"id": "groupId",
+			"order": 0
+		},
+		"createdAt": {
+			"name": "createdAt",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "createdAt",
+			"order": 1
+		},
+		"start": {
+			"name": "start",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "start",
+			"order": 2
+		},
+		"end": {
+			"name": "end",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "end",
+			"order": 3
+		},
+		"location": {
+			"name": "location",
+			"type": "object",
+			"typeLabel": "object",
+			"required": true,
+			"id": "location",
+			"order": 4
+		},
+		"going": {
+			"name": "going",
+			"type": "array",
+			"typeLabel": "array",
+			"required": true,
+			"id": "going",
+			"order": 5
+		},
+		"capacity": {
+			"name": "capacity",
+			"type": "number",
+			"typeLabel": "number",
+			"required": true,
+			"id": "capacity",
+			"order": 6
+		}
+	}
+}
