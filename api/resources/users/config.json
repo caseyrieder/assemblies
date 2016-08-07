@@ -21,7 +21,7 @@
 			"name": "location",
 			"type": "object",
 			"typeLabel": "object",
-			"required": true,
+			"required": false,
 			"id": "location",
 			"order": 2
 		},
@@ -29,7 +29,7 @@
 			"name": "technologies",
 			"type": "array",
 			"typeLabel": "array",
-			"required": true,
+			"required": false,
 			"id": "technologies",
 			"order": 3
 		},
@@ -37,7 +37,7 @@
 			"name": "avatar",
 			"type": "string",
 			"typeLabel": "string",
-			"required": true,
+			"required": false,
 			"id": "avatar",
 			"order": 4
 		}

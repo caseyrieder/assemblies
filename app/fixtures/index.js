@@ -13,6 +13,8 @@ export const SolidColors = [
 
 export const BackgroundImage = 'https://s3-us-west-2.amazonaws.com/assembliesapp/welcome%402x.png';
 
+export const Logo = 'https://s3-us-west-2.amazonaws.com/assembliesapp/logo.png';
+
 export const Headers = {
   'Content-Type': 'application/json'
 };

@@ -20,18 +20,29 @@ class Conversations extends Component {
   // method bindings
   constructor() {
     super();
+    this.visitConversation = this.visitConversation.bind(this);
     this._renderRow = this._renderRow.bind(this);
     this.dataSource = this.dataSource.bind(this);
   }
-  // renderRow based on convo Ids
+  // navigate to full conversation thread with this user
+  visitConversation(user) {
+    this.props.navigator.push({
+      name: 'Conversation',
+      user
+    })
+  }
+  // renderRow based on convo Ids, with 'user' as OtherUser
   _renderRow(conversation) {
     let { currentUser } = this.props;
     let userIDs = [ conversation.user1Id, conversation.user2Id ];
     let otherUserID = find(userIDs, (id) => !isEqual(id, currentUser.id));
     let user = find(this.props.users, ({ id }) => isEqual(id, otherUserID));
-    // display as earlier (otherAvatar, otherName, time since last message, first 40 chars of message)
+    // display as earlier (otherAvatar, otherName, time since last message, first 40 chars of message), with navigating to full convo thread via visitConversation method
     return (
-      <TouchableOpacity style={globals.flexContainer}>
+      <TouchableOpacity
+        style={globals.flexContainer}
+        onPress={() => this.visitConversation(user)}
+      >
         <View style={globals.flexRow}>
           <Image
             style={globals.avatar}

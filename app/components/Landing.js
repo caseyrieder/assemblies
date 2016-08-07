@@ -2,11 +2,11 @@
 import React, { Component } from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
+
+import { BackgroundImage, Logo } from '../fixtures'
 import Colors from '../styles/colors'
 import { globals, landingStyles } from '../styles'
 
-const BackgroundImage = 'https://s3-us-west-2.amazonaws.com/assembliesapp/welcome%402x.png';
-const Logo = 'https://s3-us-west-2.amazonaws.com/assembliesapp/logo.png';
 const styles = landingStyles
 
 class Landing extends Component {
