@@ -11,18 +11,18 @@ dpd.conversations.get({
     ]
 })
 .then(function(data){
-   console.log('DATA', data);
-   if (data.length) {
-       dpd.conversations.put(data.id, {
-           lastMessageText: text,
-           lastMessageDate: createdAt
-       });
-   } else {
-       dpd.conversations.post({
-          user1Id: senderId,
-          user2Id: recipientId,
-           lastMessageText: text,
-           lastMessageDate: createdAt
-       });
-   }
+    console.log('DATA', data);
+    if (data.length) {
+        dpd.conversations.put(data.id, {
+            lastMessageText: text,
+            lastMessageDate: createdAt
+        });
+    } else {
+        dpd.conversations.post({
+            user1Id: senderId,
+            user2Id: recipientId,
+            lastMessageText: text,
+            lastMessageDate: createdAt
+        });
+    }
 });
