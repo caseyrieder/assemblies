@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, View } from 'react-native'
+import { View, Text } from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
 import BackButton from '../shared/BackButton'
@@ -41,4 +41,4 @@ class Conversation extends Component {
   }
 };
 
-export default Conversation
+export default Conversation;

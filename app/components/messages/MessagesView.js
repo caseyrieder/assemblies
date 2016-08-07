@@ -4,7 +4,7 @@ import { flatten, uniq } from 'underscore'
 
 import Conversation from './Conversation'
 import Conversations from './Conversations'
-import { API, DEV } from '../../config'
+import { DEV, API } from '../../config'
 import { globals } from '../../styles'
 
 class MessagesView extends Component {
@@ -33,7 +33,7 @@ class MessagesView extends Component {
     };
     // this fetch will return conversations...line after response
     fetch(`${API}/conversations?${JSON.stringify(query)}`)
-    .then(response => repsonse.json())
+    .then(response => response.json())
     .then(conversations => this._loadUsers(conversations))
     .catch(err => this.ready(err))
     .done();

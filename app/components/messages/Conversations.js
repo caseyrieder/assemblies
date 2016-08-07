@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
-import { View, Text, Image, TouchableOpacity, ListView } from 'react-native'
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  ListView
+} from 'react-native'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
@@ -18,9 +24,9 @@ class Conversations extends Component {
     this.dataSource = this.dataSource.bind(this);
   }
   // renderRow based on convo Ids
-  _renderRow(conversation){
+  _renderRow(conversation) {
     let { currentUser } = this.props;
-    let userIDs = [ conversation.user1Id, conversations.user2Id ];
+    let userIDs = [ conversation.user1Id, conversation.user2Id ];
     let otherUserID = find(userIDs, (id) => !isEqual(id, currentUser.id));
     let user = find(this.props.users, ({ id }) => isEqual(id, otherUserID));
     // display as earlier (otherAvatar, otherName, time since last message, first 40 chars of message)
@@ -61,7 +67,7 @@ class Conversations extends Component {
     return (
       new ListView.DataSource({ rowHasChanged: rowHasChanged })
       .cloneWithRows(this.props.conversations)
-    )
+    );
   }
   // render conversations list
   render() {
@@ -83,4 +89,4 @@ class Conversations extends Component {
   }
 };
 
-export default Conversations
+export default Conversations;
