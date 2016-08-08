@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 // import Navigator, becaue this is now a dashboard
 import { Navigator } from 'react-native'
-// import Groups Component
+// import Group-related Components
 import Groups from './Groups'
+import CreateGroup from './CreateGroup'
+import CreateGroupConfirmation from './CreateGroupConfirmation'
 // import Headers, API/DEV, find/isEqual & globals because we need'em
 import Headers from '../../fixtures'
 import { API, DEV } from '../../config'
@@ -71,6 +73,24 @@ class GroupsView extends Component {
                 <Groups
                   {...this.props}
                   {...this.state}
+                  navigator={navigator}
+                />
+            );
+            case 'CreateGroup':
+              return (
+                <CreateGroup
+                  {...this.props}
+                  {...this.state}
+                  {...route}
+                  navigator={navigator}
+                />
+            );
+            case 'CreateGroupConfirmation':
+              return (
+                <CreateGroupConfirmation
+                  {...this.props}
+                  {...this.state}
+                  {...route}
                   navigator={navigator}
                 />
             );

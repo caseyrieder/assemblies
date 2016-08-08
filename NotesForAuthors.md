@@ -38,5 +38,8 @@ EDITS
   }`
   *** `conversations.user2Id` --> `conversation.user2Id` (remove 's')
 
+***Conversation autoupdating script in dpd shell doesn't work. The new message does not propagate***
+
 * Groups Chapter
 -when seeding 1st group...there is no location field, but you provide location information
+***The suggested groups section doesn't populate with anything***

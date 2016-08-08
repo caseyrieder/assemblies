@@ -3,11 +3,11 @@ import { View, Text, Image, TouchableOpacity, ListView } from 'react-native'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
+import Loading from '../shared/Loading' // add loading activityindicator
 import { rowHasChanged } from '../../utils'
 import { find, isEqual } from 'underscore'
 import Colors from '../../styles/colors'
 import { globals, messagesStyles } from '../../styles'
-
 const styles = messagesStyles
 
 class Conversations extends Component {
@@ -67,7 +67,7 @@ class Conversations extends Component {
       </TouchableOpacity>
     )
   }
-  // define listview dataSource
+  // revise listview dataSource
   dataSource() {
     return (
       new ListView.DataSource({ rowHasChanged: rowHasChanged })
@@ -76,11 +76,12 @@ class Conversations extends Component {
   }
   // render conversations list
   render() {
-    let titleConfig = { title: 'Messages', tintColor: 'white' };
+    // handle unready with activity indicato
+    if (!this.props.ready) { return <Loading/> }
     return (
       <View style={globals.flexContainer}>
         <NavigationBar
-          title={titleConfig}
+          title={{ title: 'Messages', tintColor: 'white' }}
           tintColor={Colors.brandPrimary}
         />
         <ListView

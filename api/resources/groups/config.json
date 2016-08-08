@@ -25,44 +25,44 @@
 			"id": "name",
 			"order": 2
 		},
-		"technologies": {
-			"name": "technologies",
-			"type": "array",
-			"typeLabel": "array",
-			"required": true,
-			"id": "technologies",
-			"order": 3
-		},
 		"description": {
 			"name": "description",
 			"type": "string",
 			"typeLabel": "string",
 			"required": true,
 			"id": "description",
-			"order": 4
-		},
-		"color": {
-			"name": "color",
-			"type": "string",
-			"typeLabel": "string",
-			"required": true,
-			"id": "color",
-			"order": 5
-		},
-		"image": {
-			"name": "image",
-			"type": "string",
-			"typeLabel": "string",
-			"required": true,
-			"id": "image",
-			"order": 6
+			"order": 3
 		},
 		"location": {
 			"name": "location",
 			"type": "object",
 			"typeLabel": "object",
-			"required": false,
+			"required": true,
 			"id": "location",
+			"order": 4
+		},
+		"technologies": {
+			"name": "technologies",
+			"type": "array",
+			"typeLabel": "array",
+			"required": true,
+			"id": "technologies",
+			"order": 5
+		},
+		"color": {
+			"name": "color",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "color",
+			"order": 6
+		},
+		"image": {
+			"name": "image",
+			"type": "string",
+			"typeLabel": "string",
+			"required": false,
+			"id": "image",
 			"order": 7
 		}
 	}
