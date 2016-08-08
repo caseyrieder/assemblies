@@ -14,10 +14,12 @@ import { globals } from '../../styles'
 
 // turn GroupsView into Dashboard
 class GroupsView extends Component {
-  // initialize state
+  // initialize state & bindings
   constructor() {
     super();
     this.addGroup = this.addGroup.bind(this);
+    this.unsubscribeFromGroup = this.unsubscribeFromGroup.bind(this);
+    this.addUserToGroup = this.addUserToGroup.bind(this);
     this.state = {
       groups: [],
       ready: false,
@@ -35,6 +37,57 @@ class GroupsView extends Component {
         ...this.state.groups, group
       ]
     })
+  }
+  // add the user to the group in the UI
+  addUserToGroup(group, currentUser) {
+    // set userGroups & userSuggesteds as state; set currentUser as member
+    let { groups, suggestedGroups } = this.state;
+    let member = {
+      userId: currentUser.id,
+      role: 'member',
+      joinedAt: new Date().valueOf(),
+      confirmed: true
+    };
+    // as long as currentUser isn't in the group yet...
+    if (!find(group.members, ({ userId }) => isEqual(userId, currentUser.id))) {
+      // add currentUser(member) to group members list
+      group.members = [ ...group.members, member ];
+      // add group to user groups
+      groups = [ ...groups, group ];
+      // filter group out of selectedGroups
+      suggestedGroups = suggestedGroups.filter(({ id }) => ! isEqual(id, group.id));
+      // re-set groups & selecteds within state
+      this.setState({ groups, suggestedGroups })
+      // call the updateGroup method to send info to DB
+      this.updateGroup(group);
+    }
+  }
+  // send user to the group on the DB
+  updateGroup(group) {
+    fetch(`${API}/groups/${group.id}`, {
+      method: 'PUT',
+      headers: Headers,
+      body: JSON.stringify(group)
+    })
+    .then(response => response.json())
+    .then(data => {})
+    .catch(err => {})
+    .done();
+  }
+  // unsubscribe (from ActionSheet)
+  unsubscribeFromGroup(group, currentUser) {
+    // define userGroups & suggesteds as state
+    let { groups, suggestedGroups } = this.state;
+    // filter currentUser out of group members
+    group.members = group.member.filter(({ userId }) => !isEqual(userId, currentUser.id));
+    // filter group out of userGroups
+    groups = groups.filter(({ id }) => !isEqual(id, group.id));
+    // add group to suggesteds
+    suggestedGroups = [ ...suggestedGroups, group ];
+    // re-set group/suggesteds state
+    this.setState({ groups, suggestedGroups });
+    // call updateGroup to send data to DB
+    this.updateGroup(group);
   }
   // fetch user's groups
   _loadGroups(currentUser) {
@@ -109,8 +162,11 @@ class GroupsView extends Component {
               return (
                 <Group
                   {...this.props}
+                  {...this.state}
                   {...route}
+                  addUserToGroup={this.addUserToGroup}
                   navigator={navigator}
+                  unsubscribeFromGroup={this.unsubscribeFromGroup}
                 />
               );
           }

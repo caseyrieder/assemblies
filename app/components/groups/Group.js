@@ -63,6 +63,15 @@ class JoinButton extends Component {
     )
   }
 };
+// Button to open ActionSheet, for leaving a group
+const OptionsButton = ({ openActionSheet }) => {
+  return (
+    <TouchableOpacity style={globals.pa1} onPress={openActionSheet}>
+      <Icon name='ios-more' size={25} color='#ccc' />
+    </TouchableOpacity>
+  )
+}
+
 // stateless list of group members
 export const GroupMembers = ({ users, members, handlePress }) => {
   // define user var for each member, return if none exist
@@ -100,11 +109,51 @@ class Group extends Component {
     super();
     this.goBack = this.goBack.bind(this);
     this.visitProfile = this.visitProfile.bind(this);
+    this.visitCreateEvent = this.visitCreateEvent.bind(this);
+    this.openActionSheet = this.openActionSheet.bind(this);
     this.state = {
       events: [],
       ready: false,
       users: [],
     }
+  }
+  // method for opening the action sheet
+  openActionSheet() {
+    // assign group & currentUser to props
+    let { group, currentUser } = this.props;
+    // member is the userId of the currentUser
+    let member = find(group.members, ({ userId }) => isEqual(userId, currentUser.id));
+    // Define 2 actionSheet buttons
+    let buttonActions = ['Unsubcribe', 'Cancel'];
+    // if member=owner, can also create event from actionsheet
+    if (member && member.role === 'owner') {
+      buttonActions.unshift('Create Event');
+    }
+    // define options
+    let options = {
+      options: buttonActions,
+      cancelButtonIndex: buttonActions.length-1
+    };
+    // display the ActionSheet & define actions for each button
+    ActionSheetIOS.showActionSheetWithOptions(options, (buttonIndex) => {
+      switch(buttonActions[buttonIndex]) {
+        case 'Unsubscribe':
+          this.props.unsubscribeFromGroup(group, currentUser);
+          break;
+        case 'Create Event':
+          this.visitCreateEvent(group);
+          break;
+        default:
+          return;
+      }
+    });
+  }
+  // navigate to event creation view
+  visitCreateEvent(group) {
+    this.props.navigator.push({
+      name: 'CreateEvent',
+      group
+    })
   }
   // load users after component mounts
   componentDidMount() {
@@ -155,7 +204,8 @@ class Group extends Component {
         <NavigationBar
           title={{title: group.name, tintColor: 'white'}}
           tintColor={Colors.brandPrimary}
-          leftButton={<BackButton handlePress={this.goBack}/>}
+          leftButton={<BackButton navigator={navigator}/>}
+          rightButton={<OptionsButton openActionSheet={this.openActionSheet}/>}
         />
         {/* ScrollView */}
         <ScrollView style={globals.flex}>
