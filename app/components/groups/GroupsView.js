@@ -79,7 +79,7 @@ class GroupsView extends Component {
     // define userGroups & suggesteds as state
     let { groups, suggestedGroups } = this.state;
     // filter currentUser out of group members
-    group.members = group.member.filter(({ userId }) => !isEqual(userId, currentUser.id));
+    group.members = group.members.filter(({ userId }) => !isEqual(userId, currentUser.id));
     // filter group out of userGroups
     groups = groups.filter(({ id }) => !isEqual(id, group.id));
     // add group to suggesteds

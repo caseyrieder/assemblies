@@ -47,3 +47,4 @@ EDITS
 **in Group component, you forgot to "import Colors from '../../styles/colors';"
 ALSO...line 24:
   'render{' should be 'render(){'
+**in Group Component... Dont remove handlePress={this.goBack} from BackButton

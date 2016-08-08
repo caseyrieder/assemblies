@@ -204,7 +204,7 @@ class Group extends Component {
         <NavigationBar
           title={{title: group.name, tintColor: 'white'}}
           tintColor={Colors.brandPrimary}
-          leftButton={<BackButton navigator={navigator}/>}
+          leftButton={<BackButton navigator={navigator} handlePress={this.goBack}/>}
           rightButton={<OptionsButton openActionSheet={this.openActionSheet}/>}
         />
         {/* ScrollView */}
