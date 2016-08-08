@@ -29,7 +29,7 @@ class CreateGroup extends Component {
   handleSubmit() {
     let { name, location, summary, description } = this.state;
     this.props.navigator.push({
-      name: 'CreateGroupConfirmation',
+      name: 'CreateGroupConfirm',
       groupName: name,
       description,
       location,

@@ -4,7 +4,8 @@ import { Navigator } from 'react-native'
 // import Group-related Components
 import Groups from './Groups'
 import CreateGroup from './CreateGroup'
-import CreateGroupConfirmation from './CreateGroupConfirmation'
+import CreateGroupConfirm from './CreateGroupConfirm'
+import Group from './Group'
 // import Headers, API/DEV, find/isEqual & globals because we need'em
 import Headers from '../../fixtures'
 import { API, DEV } from '../../config'
@@ -16,6 +17,7 @@ class GroupsView extends Component {
   // initialize state
   constructor() {
     super();
+    this.addGroup = this.addGroup.bind(this);
     this.state = {
       groups: [],
       ready: false,
@@ -25,6 +27,14 @@ class GroupsView extends Component {
   // first action before we view component--> show user's groups
   componentWillMount() {
     this._loadGroups(this.props.currentUser);
+  }
+  // for adding a new group to the list
+  addGroup(group) {
+    this.setState({
+      groups: [
+        ...this.state.groups, group
+      ]
+    })
   }
   // fetch user's groups
   _loadGroups(currentUser) {
@@ -75,7 +85,7 @@ class GroupsView extends Component {
                   {...this.state}
                   navigator={navigator}
                 />
-            );
+              );
             case 'CreateGroup':
               return (
                 <CreateGroup
@@ -84,16 +94,25 @@ class GroupsView extends Component {
                   {...route}
                   navigator={navigator}
                 />
-            );
-            case 'CreateGroupConfirmation':
+              );
+            case 'CreateGroupConfirm':
               return (
-                <CreateGroupConfirmation
+                <CreateGroupConfirm
                   {...this.props}
                   {...this.state}
                   {...route}
                   navigator={navigator}
+                  addGroup={this.addGroup}
                 />
-            );
+              );
+            case 'Group':
+              return (
+                <Group
+                  {...this.props}
+                  {...route}
+                  navigator={navigator}
+                />
+              );
           }
         }}
       />

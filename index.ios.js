@@ -88,7 +88,7 @@ class Assemblies extends Component {
             case 'Landing':
               return (
                 <Landing navigator={navigator}/>
-            );
+              );
             {/* add logout */}
             case 'Dashboard':
               return (
@@ -97,11 +97,11 @@ class Assemblies extends Component {
                   user={this.state.user}
                   logout={this.logout}
                 />
-            );
+              );
             case 'Register':
               return (
                 <Register navigator={navigator}/>
-            );
+              );
             {/* add RegisterConfirmation route */}
             case 'RegisterConfirm':
               return (
@@ -110,7 +110,7 @@ class Assemblies extends Component {
                   updateUser={this.updateUser}
                   navigator={navigator}
                 />
-            );
+              );
             {/* add updateUser method state to Dashboard */}
             case 'Login':
               return (
@@ -118,7 +118,7 @@ class Assemblies extends Component {
                   navigator={navigator}
                   updateUser={this.updateUser}
                 />
-            );
+              );
           }
         }}
       />

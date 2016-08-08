@@ -55,7 +55,7 @@ const EmptySuggestedGroupBoxes = () => (
 // stateless GroupBoxes renderer
 export const GroupBoxes = ({ groups, visitGroup, visitCreateGroup }) => {
   // log list of groups
-  console.log('GROUPS', groups);
+  console.log('MY GROUPS', groups);
   // handle empty group list
   if (!groups.length) {
     return <EmptyGroupBoxes handlePress={visitCreateGroup}/>
@@ -92,13 +92,13 @@ export const GroupBoxes = ({ groups, visitGroup, visitCreateGroup }) => {
 // stateless suggestedgroups box renderer
 const SuggestedGroupBoxes = ({ groups, visitGroup }) => {
   // log list of groups
-  console.log('GROUPS', groups);
+  console.log('SUGGESTED GROUPS', groups);
   // handle empty suggested list
   if (!groups.length) { return <EmptySuggestedGroupBoxes />}
   // otherwise, render list by mapping over suggested groups like so...
   return (
     <View style={styles.boxContainer}>
-      {groups.map((group, ids) => {
+      {groups.map((group, idx) => {
         if (!group) { return <EmptyGroupBox key={idx}/>}
         // clickable image w/group name overlayed for each group
         return (

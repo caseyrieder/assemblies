@@ -42,4 +42,8 @@ EDITS
 
 * Groups Chapter
 -when seeding 1st group...there is no location field, but you provide location information
-***The suggested groups section doesn't populate with anything***
+***in CreateGroupConfirm, you discuss updateGroups method, but the code is addGroup method**
+
+**in Group component, you forgot to "import Colors from '../../styles/colors';"
+ALSO...line 24:
+  'render{' should be 'render(){'
