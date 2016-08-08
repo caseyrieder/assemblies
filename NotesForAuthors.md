@@ -38,4 +38,5 @@ EDITS
   }`
   *** `conversations.user2Id` --> `conversation.user2Id` (remove 's')
 
-*
+* Groups Chapter
+-when seeding 1st group...there is no location field, but you provide location information

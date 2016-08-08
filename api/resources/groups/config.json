@@ -56,6 +56,14 @@
 			"required": true,
 			"id": "image",
 			"order": 6
+		},
+		"location": {
+			"name": "location",
+			"type": "object",
+			"typeLabel": "object",
+			"required": false,
+			"id": "location",
+			"order": 7
 		}
 	}
 }
