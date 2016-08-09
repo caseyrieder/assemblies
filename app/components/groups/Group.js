@@ -87,10 +87,11 @@ class EventList extends Component {
       </Swipeout>
     )
   }
-  // set up the sataSource for the list from events prop
+  // set up the dataSource for the list from events prop
   dataSource(){
     return (
-      new ListView.DataSource({ rowHasChanged }).cloneWithRows(this.props.events)
+      new ListView.DataSource({ rowHasChanged })
+        .cloneWithRows(this.props.events)
     );
   }
   // display the list
@@ -106,7 +107,7 @@ class EventList extends Component {
     return (
       <ListView
         enableEmptySections={true}
-        dataSource={this.dataSource}
+        dataSource={this.dataSource()}
         renderRow={this._renderRow}
         scrollEnabled={false}
         style={globals.flex}
@@ -271,7 +272,7 @@ class Group extends Component {
     this.updateEventGoing(event);
   }
   // reoute to Event screen
-  visitEvent(){
+  visitEvent(event){
     this.props.navigator.push({
       name: 'Event',
       group: this.props.group,
