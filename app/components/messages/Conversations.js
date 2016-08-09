@@ -12,21 +12,21 @@ const styles = messagesStyles
 
 class Conversations extends Component {
   // method bindings
-  constructor() {
+  constructor(){
     super();
     this.visitConversation = this.visitConversation.bind(this);
     this._renderRow = this._renderRow.bind(this);
     this.dataSource = this.dataSource.bind(this);
   }
   // navigate to full conversation thread with this user
-  visitConversation(user) {
+  visitConversation(user){
     this.props.navigator.push({
       name: 'Conversation',
       user
     })
   }
   // renderRow based on convo Ids, with 'user' as OtherUser
-  _renderRow(conversation) {
+  _renderRow(conversation){
     let { currentUser } = this.props;
     let userIDs = [ conversation.user1Id, conversation.user2Id ];
     let otherUserID = find(userIDs, (id) => !isEqual(id, currentUser.id));
@@ -68,14 +68,14 @@ class Conversations extends Component {
     )
   }
   // revise listview dataSource
-  dataSource() {
+  dataSource(){
     return (
       new ListView.DataSource({ rowHasChanged: rowHasChanged })
       .cloneWithRows(this.props.conversations)
     );
   }
   // render conversations list
-  render() {
+  render(){
     // handle unready with activity indicato
     if (!this.props.ready) { return <Loading/> }
     return (

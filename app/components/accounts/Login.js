@@ -8,13 +8,12 @@ import { Headers } from '../../fixtures' // for api call header
 import { extend } from 'underscore' // to add attrib/prop to an object
 import Colors from '../../styles/colors'
 import { globals, formStyles } from '../../styles' // add formStyles
-
 const styles = formStyles // create formStyles constant
 
 // create Login screen that, for now, just lets us go back
 class Login extends Component {
   // add all the handlers & initialize state
-  constructor() {
+  constructor(){
     super();
     this.loginUser = this.loginUser.bind(this);
     this.goBack = this.goBack.bind(this);
@@ -27,7 +26,7 @@ class Login extends Component {
     }
   }
   // define the fetch API call to login by POSTing login form to endpoint (.../users/login)---gives us response with status (response.status) & id (response.id) property... handling error (401), fetch/get user info with session id cookie (sid) (.../users/me)
-  loginUser() {
+  loginUser(){
     if (DEV) {
       console.log('Logging in...');
       console.log('Email: ', this.state.email);
@@ -48,7 +47,7 @@ class Login extends Component {
   }
   /*DEFINE HELPER FXNS FOR loginUser METHOD...*/
   // check the loggedin status of the call
-  loginStatus(response) {
+  loginStatus(response){
     if (response.status === 401) {
       this.setState({ errorMsg: 'Incorrect login info' });
     } else {
@@ -56,7 +55,7 @@ class Login extends Component {
     }
   }
   // fetch user data if login info is correct
-  fetchUserInfo(sid) {
+  fetchUserInfo(sid){
     // AsyncStorage for user login persistence
     AsyncStorage.setItem('sid', sid);
     fetch(`${API}/users/me`, {
@@ -68,7 +67,7 @@ class Login extends Component {
     .done();
   }
   // log the connected user & redirect to Dashboard
-  updateUserInfo(user) {
+  updateUserInfo(user){
     if (DEV) { console.log('Logged in user', user); }
     this.props.updateUser(user);
     this.props.navigator.push({ name: 'Dashboard' })
@@ -79,17 +78,17 @@ class Login extends Component {
   }
 
   // define 3 onPress handlers
-  goBack() {
+  goBack(){
     this.props.navigator.pop();
   }
-  changeEmail(email) {
+  changeEmail(email){
     this.setState({ email })
   }
-  changePassword(password) {
+  changePassword(password){
     this.setState({ password })
   }
 
-  render() {
+  render(){
     let titleConfig = { title: 'Login', tintColor: 'white' };
     return (
       <View style={globals.flexContainer}>

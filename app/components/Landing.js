@@ -11,21 +11,21 @@ const styles = landingStyles
 
 class Landing extends Component {
   /* change to new event handlers */
-  constructor() {
-    super()
-    this.visitLogin = this.visitLogin.bind(this)
-    this.visitRegister = this.visitRegister.bind(this)
+  constructor(){
+    super();
+    this.visitLogin = this.visitLogin.bind(this);
+    this.visitRegister = this.visitRegister.bind(this);
   }
 
   /* set up 2 event handlers */
-  visitLogin() {
-    this.props.navigator.push({ name: 'Login' })
+  visitLogin(){
+    this.props.navigator.push({ name: 'Login' });
   }
-  visitRegister() {
-    this.props.navigator.push({ name: 'Register' })
+  visitRegister(){
+    this.props.navigator.push({ name: 'Register' });
   }
 
-  render() {
+  render(){
     return (
       <View style={styles.container}>
         <View style={styles.container}>
@@ -68,6 +68,6 @@ class Landing extends Component {
       </View>
     )
   }
-}
+};
 
-export default Landing
+export default Landing;

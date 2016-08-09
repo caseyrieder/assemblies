@@ -9,7 +9,7 @@ import { globals } from '../../styles'
 
 class MessagesView extends Component {
   // set initial state
-  constructor() {
+  constructor(){
     super();
     this.state = {
       conversations: [],
@@ -18,11 +18,11 @@ class MessagesView extends Component {
     };
   }
   // load all conversations on initial mount
-  componentDidMount() {
+  componentDidMount(){
     this._loadConversations();
   }
   // grab 10 newest conversations involving currentUser
-  _loadConversations() {
+  _loadConversations(){
     let { currentUser } = this.props;
     let query = {
       $or: [
@@ -50,11 +50,11 @@ class MessagesView extends Component {
     .done();
   }
   // set ready error
-  ready(err) {
+  ready(err){
     this.setState({ ready: true });
   }
   // becomes a navigator component toggling btwn convresations list & an individual conversation
-  render() {
+  render(){
     return (
       <Navigator
         style={globals.flex}

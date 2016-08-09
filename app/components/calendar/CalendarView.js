@@ -3,7 +3,7 @@ import { View, Text } from 'react-native'
 import { globals } from '../../styles'
 
 class CalendarView extends Component {
-  render() {
+  render(){
     return (
       <View style={globals.flexCenter}>
         <Text style={globals.h2}>CALENDAR VIEW</Text>

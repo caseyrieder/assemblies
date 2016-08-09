@@ -1,8 +1,8 @@
-export function rowHasChanged(r1, r2) {
+export function rowHasChanged(r1, r2){
   return r1 !== r2;
 }
 
-export function registerError({ email, password, location, firstName, lastName }) {
+export function registerError({ email, password, location, firstName, lastName }){
   if (!/@/.test(email)) { return 'Invalid email address';}
   if (!password.length) { return 'Must set a password';}
   if (!location || typeof location !== 'object') { return 'Must set valid location';}

@@ -1,12 +1,14 @@
+// base components
 import React, { Component } from 'react'
-// import Navigator, becaue this is now a dashboard
 import { Navigator } from 'react-native'
-// import Group-related Components
+// Group routes
 import Groups from './Groups'
+import Group from './Group'
 import CreateGroup from './CreateGroup'
 import CreateGroupConfirm from './CreateGroupConfirm'
-import Group from './Group'
-// import Headers, API/DEV, find/isEqual & globals because we need'em
+import CreateEvent from './CreateEvent'
+import CreateEventConfirm from './CreateEventConfirm'
+// helpers
 import Headers from '../../fixtures'
 import { API, DEV } from '../../config'
 import { find, isEqual } from 'underscore'
@@ -15,7 +17,7 @@ import { globals } from '../../styles'
 // turn GroupsView into Dashboard
 class GroupsView extends Component {
   // initialize state & bindings
-  constructor() {
+  constructor(){
     super();
     this.addGroup = this.addGroup.bind(this);
     this.unsubscribeFromGroup = this.unsubscribeFromGroup.bind(this);
@@ -27,11 +29,11 @@ class GroupsView extends Component {
     }
   }
   // first action before we view component--> show user's groups
-  componentWillMount() {
+  componentWillMount(){
     this._loadGroups(this.props.currentUser);
   }
   // for adding a new group to the list
-  addGroup(group) {
+  addGroup(group){
     this.setState({
       groups: [
         ...this.state.groups, group
@@ -39,7 +41,7 @@ class GroupsView extends Component {
     })
   }
   // add the user to the group in the UI
-  addUserToGroup(group, currentUser) {
+  addUserToGroup(group, currentUser){
     // set userGroups & userSuggesteds as state; set currentUser as member
     let { groups, suggestedGroups } = this.state;
     let member = {
@@ -63,7 +65,7 @@ class GroupsView extends Component {
     }
   }
   // send user to the group on the DB
-  updateGroup(group) {
+  updateGroup(group){
     fetch(`${API}/groups/${group.id}`, {
       method: 'PUT',
       headers: Headers,
@@ -75,7 +77,7 @@ class GroupsView extends Component {
     .done();
   }
   // unsubscribe (from ActionSheet)
-  unsubscribeFromGroup(group, currentUser) {
+  unsubscribeFromGroup(group, currentUser){
     // define userGroups & suggesteds as state
     let { groups, suggestedGroups } = this.state;
     // filter currentUser out of group members
@@ -90,7 +92,7 @@ class GroupsView extends Component {
     this.updateGroup(group);
   }
   // fetch user's groups
-  _loadGroups(currentUser) {
+  _loadGroups(currentUser){
     // create query to match currentUser.id with member Ids
     let query = {
       members: { $elemMatch: { userId: currentUser.id }},
@@ -104,7 +106,7 @@ class GroupsView extends Component {
     .done();
   }
   // load group suggestions
-  _loadSuggestedGroups(groups) {
+  _loadSuggestedGroups(groups){
     // set state to existing groups list
     this.setState({ groups, ready: true });
     // find other groups based on location --> $nin= NOT IN
@@ -120,11 +122,11 @@ class GroupsView extends Component {
     .done();
   }
   // ready state changer
-  ready(err) {
+  ready(err){
     this.setState({ ready: true })
   }
   // renderer
-  render() {
+  render(){
     return (
       <Navigator
         style={globals.flex}
@@ -137,6 +139,17 @@ class GroupsView extends Component {
                   {...this.props}
                   {...this.state}
                   navigator={navigator}
+                />
+              );
+            case 'Group':
+              return (
+                <Group
+                  {...this.props}
+                  {...this.state}
+                  {...route}
+                  addUserToGroup={this.addUserToGroup}
+                  navigator={navigator}
+                  unsubscribeFromGroup={this.unsubscribeFromGroup}
                 />
               );
             case 'CreateGroup':
@@ -158,15 +171,21 @@ class GroupsView extends Component {
                   addGroup={this.addGroup}
                 />
               );
-            case 'Group':
+            case 'CreateEvent':
               return (
-                <Group
+                <CreateEvent
+                  {...this.props}
+                  {...route}
+                  navigator={navigator}
+                />
+              );
+            case 'CreateEventConfirm':
+              return (
+                <CreateEventConfirm
                   {...this.props}
                   {...this.state}
                   {...route}
-                  addUserToGroup={this.addUserToGroup}
                   navigator={navigator}
-                  unsubscribeFromGroup={this.unsubscribeFromGroup}
                 />
               );
           }

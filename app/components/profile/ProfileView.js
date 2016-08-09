@@ -4,10 +4,10 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import NavigationBar from 'react-native-navbar'
 import Colors from '../../styles/colors'
 import { globals, profileStyles } from '../../styles'
-const styles = profileStyles
+const styles = profileStyles;
 
 class ProfileView extends Component {
-  render() {
+  render(){
     let { currentUser } = this.props; // assign currentUser
     let titleConfig = { title: 'Profile', tintColor: 'white' }
     return (

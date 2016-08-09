@@ -13,7 +13,7 @@ const styles = formStyles;
 
 class CreateGroup extends Component {
   // initialize bindings & state
-  constructor() {
+  constructor(){
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePress = this.handlePress.bind(this);
@@ -26,7 +26,7 @@ class CreateGroup extends Component {
     }
   }
   // define form submission
-  handleSubmit() {
+  handleSubmit(){
     let { name, location, summary, description } = this.state;
     this.props.navigator.push({
       name: 'CreateGroupConfirm',
@@ -37,7 +37,7 @@ class CreateGroup extends Component {
     })
   }
   // store location, set as state, move to Name field
-  handlePress(data, details) {
+  handlePress(data, details){
     if (!details) { return; }
     let location = {
       ...details.geometry.location,
@@ -50,11 +50,11 @@ class CreateGroup extends Component {
     this.name.focus();
   }
   // define goBack
-  goBack() {
+  goBack(){
     this.props.navigator.pop();
   }
   // display component
-  render() {
+  render(){
     let { navigator } = this.props;
     return (
       <View style={[globals.flexContainer, globals.inactive]}>

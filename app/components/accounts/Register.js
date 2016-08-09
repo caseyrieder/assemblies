@@ -15,7 +15,7 @@ const styles = formStyles
 // create Register screen that, for now, just lets us go back
 class Register extends Component {
   // initialize state, add method bindings
-  constructor() {
+  constructor(){
     super();
     this.goBack = this.goBack.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,11 +29,11 @@ class Register extends Component {
     }
   }
 
-  goBack() {
+  goBack(){
     this.props.navigator.pop();
   }
   // new methods
-  selectLocation(data, details) {
+  selectLocation(data, details){
     if (!details) { return }
     let location = {
       ...details.geometry.location,
@@ -51,14 +51,14 @@ class Register extends Component {
     this.setState({ location });
   }
 
-  handleSubmit() {
+  handleSubmit(){
     this.props.navigator.push({
       name: 'RegisterConfirm',
       ...this.state
     })
   }
 
-  render() {
+  render(){
     let titleConfig = { title: 'Create Account', tintColor: 'white' };
     return (
       <View style={globals.flexContainer}>

@@ -43,7 +43,7 @@ const Message = ({ sender, message }) => {
 
 class Conversation extends Component {
   // initialize bindings & state
-  constructor() {
+  constructor(){
     super();
     this.goBack = this.goBack.bind(this);
     this.createMessage = this.createMessage.bind(this);
@@ -53,7 +53,7 @@ class Conversation extends Component {
     }
   }
   // load messages before component mounts
-  componentWillMount() {
+  componentWillMount(){
     this._loadMessages();
   }
   // load messages: log IDs, fetch last 10 messages btwn currentUser & user [other] in reverse chronological order & put those messages in {state.messages}...logging error if necessary
@@ -99,11 +99,11 @@ class Conversation extends Component {
     .done();
   }
   // enable back button
-  goBack() {
+  goBack(){
     this.props.navigator.pop();
   }
   // set user [other] & currentUser as props, config title
-  render() {
+  render(){
     let { user, currentUser } = this.props;
     let titleConfig = {
       title: `${user.firstName} ${user.lastName}`,

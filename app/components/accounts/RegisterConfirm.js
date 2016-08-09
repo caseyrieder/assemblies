@@ -23,7 +23,7 @@ const {
 
 class RegisterConfirm extends Component {
   // add a bunch of binders, initialize state
-  constructor() {
+  constructor(){
     super();
     this.goBack = this.goBack.bind(this);
     this.removeTechnology = this.removeTechnology.bind(this);
@@ -38,7 +38,7 @@ class RegisterConfirm extends Component {
   }
 
   // submit form with completed info
-  submitForm() {
+  submitForm(){
     let errorMsg = registerError(this.props);
     if (errorMsg !== '') { /* return error if needed */
       this.setState({ errorMsg: errorMsg });
@@ -64,7 +64,7 @@ class RegisterConfirm extends Component {
     .done();
   }
   // handle login if account creation accepted
-  loginUser(email, password) {
+  loginUser(email, password){
     fetch(`${API}/users/login`, {
       method: 'POST',
       headers: Headers,
@@ -76,7 +76,7 @@ class RegisterConfirm extends Component {
     .done();
   }
   // handle user info parsing once the user logs in
-  getUserInfo(sid) {
+  getUserInfo(sid){
     // AsyncStorage for user login persistence
     AsyncStorage.setItem('sid', sid);
     fetch(`${API}/users/me`, {
@@ -93,7 +93,7 @@ class RegisterConfirm extends Component {
     .done();
   }
   // select image from camera roll for avatar
-  showImagePicker() {
+  showImagePicker(){
     ImagePicker.showImagePicker(ImageOptions, (response) => {
       if (response.didCancel || response.error) { return; }
       const avatar = 'data:image/png;base64,' + response.data;
@@ -102,7 +102,7 @@ class RegisterConfirm extends Component {
   }
 
   // choose technology from the dropdown
-  selectTechnology(technology) {
+  selectTechnology(technology){
     this.setState({
       technologies: uniq([
         ...this.state.technologies, technology
@@ -110,7 +110,7 @@ class RegisterConfirm extends Component {
     });
   }
   // remove pressed technology
-  removeTechnology(index) {
+  removeTechnology(index){
     let { technologies } = this.state;
     this.setState({
       technologies: [
@@ -120,11 +120,11 @@ class RegisterConfirm extends Component {
     })
   }
 
-  goBack() {
+  goBack(){
     this.props.navigator.pop();
   }
 
-  render() {
+  render(){
     let titleConfig = { title: 'Create Account', tintColor: 'white' };
     return (
       <View style={[globals.flex, globals.inactive]}>

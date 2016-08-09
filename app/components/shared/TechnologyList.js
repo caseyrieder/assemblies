@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import { globals, formStyles } from '../../styles'
-const styles = formStyles
+const styles = formStyles;
 
 const TechnologyList = ({ technologies, handlePress }) => {
   return (

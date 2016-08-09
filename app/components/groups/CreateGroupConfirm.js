@@ -20,7 +20,7 @@ const styles = formStyles;
 const { width: deviceWidth, height: deviceHeight } = Dimensions.get('window')
 
 // create errorMsg fxn
-function setErrorMsg({ location, name }) {
+function setErrorMsg({ location, name }){
   if (!location) {
     return 'You must enter a location';
   } else if (!name) {
@@ -32,7 +32,7 @@ function setErrorMsg({ location, name }) {
 
 class CreateGroupConfirm extends Component {
   // initialize bindings & state
-  constructor() {
+  constructor(){
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.showImagePicker = this.showImagePicker.bind(this);
@@ -47,7 +47,7 @@ class CreateGroupConfirm extends Component {
     }
   }
   // POST to API
-  handleSubmit() {
+  handleSubmit(){
     // return error if info is missing
     let errorMsg = setErrorMsg(this.props);
     if (errorMsg !== '') {
@@ -82,14 +82,14 @@ class CreateGroupConfirm extends Component {
     .done();
   }
   // add group to UI
-  addGroup(group) {
+  addGroup(group){
     console.log('GROUP', group);
     this.props.addGroup(group);
     this.props.navigator.popToTop();
   }
 
   // select image from camera roll for groupImage
-  showImagePicker() {
+  showImagePicker(){
     ImagePicker.showImagePicker(ImageOptions, (response) => {
       // handle error
       if (response.didCancel || response.error) { return; }
@@ -99,13 +99,13 @@ class CreateGroupConfirm extends Component {
     });
   }
   // technology picker, add (concat) it to state.technologies
-  selectTechnology(technology) {
+  selectTechnology(technology){
     this.setState({
       technologies: uniq(this.state.technologies.concat(technology))
     });
   }
   // remove technology from state by slicing it from technologies
-  removeTechnology(index) {
+  removeTechnology(index){
     let { technologies } = this.state;
     this.setState({
       technologies: [
@@ -115,11 +115,11 @@ class CreateGroupConfirm extends Component {
     })
   }
   // define goBack
-  goBack() {
+  goBack(){
     this.props.navigator.pop();
   }
   // display component
-  render() {
+  render(){
     // set props & state
     let { navigator } = this.props;
     let { technologies, image, color, errorMsg } = this.state;
@@ -127,7 +127,7 @@ class CreateGroupConfirm extends Component {
     return (
       <View style={[globals.flexContainer, globals.inactive]}>
         <NavigationBar
-          title={{ title: 'Create Assembly', tintColor: 'white' }}
+          title={{ title: 'Confirm Assembly', tintColor: 'white' }}
           tintColor={Colors.brandPrimary}
           leftButton={<BackButton handlePress={this.goBack}/>}
         />

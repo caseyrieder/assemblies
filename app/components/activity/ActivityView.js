@@ -64,7 +64,7 @@ const Notification = ({ notification }) => (
 )
 
 class Activity extends Component {
-  render() {
+  render(){
     let titleConfig = { title: 'Activity', tintColor: 'white' }
     return (
       <View style={globals.flexContainer}>

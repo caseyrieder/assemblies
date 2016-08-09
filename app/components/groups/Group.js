@@ -15,16 +15,16 @@ import Colors from '../../styles/colors'
 const styles = groupsStyles;
 
 // identify if user is a group member
-function isMember(group, currentUser) {
+function isMember(group, currentUser){
   return findIndex(group.members, ({ userId }) => isEqual(userId, currentUser.id)) !== -1;
 };
 // show join for non-members
-function showJoinButton(users, currentUser) {
+function showJoinButton(users, currentUser){
   return findIndex(users, ({ id }) => isEqual(id, currentUser.id)) === -1;
 }
 // list event names for this group
 class EventList extends Component {
-  render() {
+  render(){
     return (
       <View>
         {this.props.events.map((event, idx) => {
@@ -38,7 +38,7 @@ class EventList extends Component {
 };
 // stateful join button
 class JoinButton extends Component {
-  render() {
+  render(){
     // define props for the component; boolean for joined-ness
     let { addUserToGroup, group, currentUser } = this.props
     let hasJoined = isMember(group, currentUser);
@@ -105,7 +105,7 @@ export const GroupMembers = ({ users, members, handlePress }) => {
 // finally, the actual component
 class Group extends Component {
   // initialize bindings & state
-  constructor() {
+  constructor(){
     super();
     this.goBack = this.goBack.bind(this);
     this.visitProfile = this.visitProfile.bind(this);
@@ -118,7 +118,7 @@ class Group extends Component {
     }
   }
   // method for opening the action sheet
-  openActionSheet() {
+  openActionSheet(){
     // assign group & currentUser to props
     let { group, currentUser } = this.props;
     // member is the userId of the currentUser
@@ -136,7 +136,7 @@ class Group extends Component {
     };
     // display the ActionSheet & define actions for each button
     ActionSheetIOS.showActionSheetWithOptions(options, (buttonIndex) => {
-      switch(buttonActions[buttonIndex]) {
+      switch(buttonActions[buttonIndex]){
         case 'Unsubscribe':
           this.props.unsubscribeFromGroup(group, currentUser);
           break;
@@ -149,18 +149,18 @@ class Group extends Component {
     });
   }
   // navigate to event creation view
-  visitCreateEvent(group) {
+  visitCreateEvent(group){
     this.props.navigator.push({
       name: 'CreateEvent',
       group
     })
   }
   // load users after component mounts
-  componentDidMount() {
+  componentDidMount(){
     this._loadUsers();
   }
   // fetch list of group members from DB
-  _loadUsers(events) {
+  _loadUsers(events){
     // set events state
     this.setState({ events })
     // query to get all userIds for group members
@@ -176,25 +176,25 @@ class Group extends Component {
     .done();
   }
   // enable back button
-  goBack() {
+  goBack(){
     this.props.navigator.replacePreviousAndPop({ name: 'Groups' });
   }
   // view profile of clicked member
-  visitProfile(user) {
+  visitProfile(user){
     this.props.navigator.push({
       name: 'Profile',
       user
     })
   }
   // create new event for the group
-  visitCreateEvent(group) {
+  visitCreateEvent(group){
     this.props.navigator.push({
       name: 'CreateEvent',
       group
     })
   }
   // display the component
-  render() {
+  render(){
     // assign group & currentUser to props
     let { group, currentUser } = this.props;
     // assign variable to handle whether joinButton is displayed

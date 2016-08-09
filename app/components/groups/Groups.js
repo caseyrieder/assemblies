@@ -8,7 +8,7 @@ import { globals, groupsStyles } from '../../styles'
 const styles = groupsStyles;
 
 //create fxn for formatting groups based on odd/even number
-export function formatGroups(groups) {
+export function formatGroups(groups){
   if (groups.length % 2 === 1) {
     return groups.concat(null);
   } else {
@@ -134,20 +134,20 @@ const AddButton = ({ handlePress }) => (
 // finally, define the full component
 class Groups extends Component {
   // initialize bindings
-  constructor() {
+  constructor(){
     super();
     this.visitCreateGroup = this.visitCreateGroup.bind(this);
     this.visitGroup = this.visitGroup.bind(this);
   }
   // reroute for visitGroup press
-  visitGroup(group) {
+  visitGroup(group){
     this.props.navigator.push({
       name: 'Group',
       group
     })
   }
   // reroute for visitCreateGroup press
-  visitCreateGroup() {
+  visitCreateGroup(){
     this.props.navigator.push({ name: 'CreateGroup' })
   }
   // display component

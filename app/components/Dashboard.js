@@ -13,7 +13,7 @@ import { API } from '../config'
 
 class Dashboard extends Component {
   // add logout
-  constructor() {
+  constructor(){
     super();
     this.logout = this.logout.bind(this);
     this.state = {
@@ -21,7 +21,7 @@ class Dashboard extends Component {
     };
   }
   // define logout call to API
-  logout() {
+  logout(){
     fetch(`${API}/users/logout`, {
       method: 'POST',
       headers: Headers
@@ -32,7 +32,7 @@ class Dashboard extends Component {
     .done();
   }
 
-  render() {
+  render(){
     let { user } = this.props; // assign currentUser
     return (
       <TabBarIOS>
