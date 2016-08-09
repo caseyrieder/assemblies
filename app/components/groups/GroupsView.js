@@ -6,6 +6,7 @@ import Groups from './Groups'
 import Group from './Group'
 import CreateGroup from './CreateGroup'
 import CreateGroupConfirm from './CreateGroupConfirm'
+import Event from './Event'
 import CreateEvent from './CreateEvent'
 import CreateEventConfirm from './CreateEventConfirm'
 // helpers
@@ -169,6 +170,14 @@ class GroupsView extends Component {
                   {...route}
                   navigator={navigator}
                   addGroup={this.addGroup}
+                />
+              );
+            case 'Event':
+              return (
+                <Event
+                  {...this.props}
+                  {...route}
+                  navigator={navigator}
                 />
               );
             case 'CreateEvent':

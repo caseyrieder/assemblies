@@ -18,6 +18,7 @@
     "react-native-navbar": "^1.5.0",
     "react-native-picker": "^3.0.5",
     "react-native-selectme": "^1.2.0",
+    "react-native-swipeout": "dancormier/react-native-swipeout#829b7c01ba969cd70509944bc210289b759d48a6",
     "react-native-vector-icons": "^2.0.3",
     "underscore": "^1.8.3"
   }
