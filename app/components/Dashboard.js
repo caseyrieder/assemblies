@@ -78,6 +78,7 @@ class Dashboard extends Component {
           <ProfileView
             currentUser={user}
             logout={this.logout}
+            updateUser={this.props.updateUser}
           />
         </TabBarItemIOS>
       </TabBarIOS>

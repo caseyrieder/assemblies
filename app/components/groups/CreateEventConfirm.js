@@ -1,6 +1,6 @@
 // basic elements
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, View, Text, TextInput, DatePickerIOS, Modal, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, DatePickerIOS, Modal, TouchableOpacity } from 'react-native'
 import NavigationBar from 'react-native-navbar'
 import BackButton from '../shared/BackButton'
 import Picker from 'react-native-picker'

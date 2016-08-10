@@ -100,7 +100,6 @@ class RegisterConfirm extends Component {
       this.setState({ avatar });
     });
   }
-
   // choose technology from the dropdown
   selectTechnology(technology){
     this.setState({

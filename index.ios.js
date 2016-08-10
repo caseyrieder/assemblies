@@ -93,6 +93,7 @@ class Assemblies extends Component {
             case 'Dashboard':
               return (
                 <Dashboard
+                  updateUser={this.updateUser}
                   navigator={navigator}
                   user={this.state.user}
                   logout={this.logout}

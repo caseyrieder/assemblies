@@ -1,13 +1,13 @@
 // elements
 import React, { Component, PropTypes } from 'react'
-import { ScrollView, View, Text, TextInput, Slider, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, Slider, TouchableOpacity } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import NavigationBar from 'react-native-navbar'
 import BackButton from '../shared/BackButton'
 import Icon from 'react-native-vector-icons/Ionicons'
 // helpers
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { find } from 'underscore'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import Config from 'react-native-config'
 // styles
 import Colors from '../../styles/colors'
