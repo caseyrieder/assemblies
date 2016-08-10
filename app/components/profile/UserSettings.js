@@ -5,7 +5,7 @@ import NavigationBar from 'react-native-navbar'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
-import BackButton from '../shared/BackButton'
+import BackButton from '../shared/BackButton';
 // helpers
 import { find } from 'underscore'
 import { Headers } from '../../fixtures'
