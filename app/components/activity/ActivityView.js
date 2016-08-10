@@ -5,6 +5,7 @@ import { Navigator } from 'react-native'
 import Activity from './Activity'
 import Conversation from '../messages/Conversation'
 import Event from '../groups/Event'
+import Profile from '../profile/Profile'
 // helpers
 import { extend } from 'underscore'
 import { API, DEV } from '../../config'
@@ -91,6 +92,14 @@ class ActivityView extends Component {
             case 'Conversation':
               return (
                 <Conversation
+                  {...this.props}
+                  {...route}
+                  navigator={navigator}
+                />
+              );
+            case 'Profile':
+              return (
+                <Profile
                   {...this.props}
                   {...route}
                   navigator={navigator}
