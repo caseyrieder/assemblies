@@ -4,6 +4,9 @@
 # ENV
 #
 .env
+# Author Notes
+#
+NotesForAuthors.md
 # Xcode
 #
 build/
