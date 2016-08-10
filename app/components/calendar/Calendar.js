@@ -17,7 +17,7 @@ const styles = calendarStyles;
 // define stateless EmptyList
 const EmptyList = ({ ready }) => {
   // handle not readiness, then show the empty list text
-  if (!ready) { return <Loading/> }
+  if (! ready ) { return <Loading /> }
   return (
     <View style={[globals.textContainer, globals.ph1]}>
       <Text style={styles.h2}>
@@ -29,8 +29,8 @@ const EmptyList = ({ ready }) => {
 // define the list of events
 class EventList extends Component {
   // initialize
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.renderRow = this.renderRow.bind(this);
     this.renderSectionHeader = this.renderSectionHeader.bind(this);
     this.visitEvent = this.visitEvent.bind(this);
@@ -83,10 +83,10 @@ class EventList extends Component {
     return (
       <TouchableOpacity
         style={styles.row}
-        onPres={() => this.visitEvent(event)}
+        onPress={() => this.visitEvent(event)}
       >
         <View style={globals.flex}>
-          <View style={styles.flexContainer}>
+          <View style={styles.textContainer}>
             <Text style={styles.h4}>
               {event.name}
             </Text>
@@ -96,7 +96,7 @@ class EventList extends Component {
             {isGoing && <Text style={[globals.primaryText, styles.h5]}><Icon name='ios-checkmark' color={Colors.brandSuccess}/> Yes</Text>}
           </View>
         </View>
-        <View style={styles.flexContainer}>
+        <View style={styles.textContainer}>
           <Text style={[styles.dateText, globals.mh1]}>
             {moment(event.start).format('h:mm a')}
           </Text>
@@ -113,10 +113,10 @@ class EventList extends Component {
   // display section header as formatted date
   renderSectionHeader(sectionData, sectionID){
     return (
-      <View style={styles.setionHeader}>
-        <View style={styles.sectionHeaderText}>
+      <View style={styles.sectionHeader}>
+        <Text style={styles.sectionHeaderText}>
           {moment(sectionData).format('dddd MMM Do')}
-        </View>
+        </Text>
       </View>
     )
   }
@@ -146,10 +146,8 @@ class Calendar extends Component {
           tintColor={Colors.brandPrimary}
           title={{ title: 'Calendar', tintColor: 'white' }}
         />
-        {events && events.length ? <EventList {...this.props}/> : <EmptyList ready={ready}/>}
+        { events && events.length ? <EventList {...this.props}/> : <EmptyList ready={ready}/> }
       </View>
     )
   }
 };
-
-export default Calendar;
